@@ -155,7 +155,7 @@ def jugar():
         funciones_juego.dibujar_estrellas(estrellas,screen)
         estrellas=Menu_finalizacion.mover_estrellas(estrellas)  
         #mover enemigos
-        direccion_enemigos = Enemigo.mover_enemigos(enemigos, direccion_enemigos,  caracteristicas.width, screen,tiempo_actual,tiempo_transcurrido)
+        direccion_enemigos = Enemigo.mover_enemigos(enemigos, direccion_enemigos,  caracteristicas.width, screen)
         tiempo_actual=0
         #mover balas y dibujar balas
         funciones_juego.actualizar_pnormal(proyectiles_lanzados,screen)
@@ -352,7 +352,7 @@ def jugar2():
         funciones_juego.dibujar_estrellas(estrellas,screen)
         estrellas=Menu_finalizacion.mover_estrellas(estrellas)  
         #mover enemigos
-        direccion_enemigos = Enemigo.mover_enemigos(enemigos, direccion_enemigos,  caracteristicas.width, screen,tiempo_actual,tiempo_transcurrido)
+        direccion_enemigos = Enemigo.mover_enemigos(enemigos, direccion_enemigos,  caracteristicas.width, screen)
         tiempo_actual=0
         #mover balas y dibujar balas
         funciones_juego.actualizar_pnormal(proyectiles_lanzados,screen)

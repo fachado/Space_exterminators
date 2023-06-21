@@ -57,7 +57,7 @@ class Enemigo:
         return enemigos
     
     @staticmethod
-    def mover_enemigos(enemigos, direccion, width, screen, tiempo_actual, tiempo_transcurrido):
+    def mover_enemigos(enemigos, direccion, width, screen):
         enemigos_vivos = []
 
         for enemigo in enemigos:
