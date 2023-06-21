@@ -149,9 +149,6 @@ def jugar():
         #mover enemigos hacia abajo cada 2 segundos.
         tiempo_actual = pygame.time.get_ticks()
         tiempo_transcurrido = (tiempo_actual - tiempo_ultimo_movimiento) / 1000
-        if tiempo_transcurrido >= 2:
-            Enemigo.mover_linea(enemigos,10)
-            tiempo_ultimo_movimiento = tiempo_actual
         #fondos e imagenes
         screen.fill((0,0, 0))
         screen.blit(nave_espacial.image, nave_espacial.rect)      
@@ -209,7 +206,8 @@ def jugar():
         #dibujar o sacar vidas
         funciones_juego.vidas_pantalla(nave_espacial,nave_espacial_image_vidas,screen)
         tiempo_restante = funciones_juego.mostrar_temporizador(screen, duracion_temporizador, caracteristicas.width // 2, 0, fuente, colores.BLANCO,tiempo_inicial)
-        
+        perdio=Enemigo.perder(enemigos,caracteristicas.height,nave_espacial)
+
         if len(enemigos) == 0:
             levelup.play()
             bonus_puntos=150
@@ -219,7 +217,7 @@ def jugar():
 
         pygame.display.flip()
 
-        if nave_espacial.obtener_vidas()==0:
+        if nave_espacial.obtener_vidas()==0 or perdio:
             pygame.mixer.music.stop()
             gameover.play()
             mostrar_menu_reinicio(valor_actual)
@@ -345,8 +343,8 @@ def jugar2():
         #mover enemigos hacia abajo cada 2 segundos.
         tiempo_actual = pygame.time.get_ticks()
         tiempo_transcurrido = (tiempo_actual - tiempo_ultimo_movimiento) / 1000
-        if tiempo_transcurrido >= 2:
-            Enemigo.mover_linea(enemigos,10)
+        if tiempo_transcurrido >= 0.1:
+            Enemigo.mover_linea(enemigos,1.4)
             tiempo_ultimo_movimiento = tiempo_actual
         #fondos e imagenes
         screen.fill((0,0, 0))
@@ -404,6 +402,7 @@ def jugar2():
         #dibujar o sacar vidas
         funciones_juego.vidas_pantalla(nave_espacial,nave_espacial_image_vidas,screen)
         tiempo_restante = funciones_juego.mostrar_temporizador(screen, duracion_temporizador, caracteristicas.width // 2, 0, fuente, colores.AZUL,tiempo_inicial)
+        perdio=Enemigo.perder(enemigos,caracteristicas.height,nave_espacial)
 
         puntuacion_total = sum(puntuaciones.values())
         if len(enemigos) == 0:
@@ -413,7 +412,7 @@ def jugar2():
             nivel += 1
             cargar_nivel(nivel)
         pygame.display.flip()
-        if nave_espacial.obtener_vidas()==0:
+        if nave_espacial.obtener_vidas()==0 or perdio:
             pygame.mixer.music.stop()
             gameover.play()
             mostrar_menu_reinicio(puntuacion_total)
@@ -429,7 +428,7 @@ def jugar3():
     puntaje = Puntaje()
     #MARCO DE PUNTAJE
     vida_boss=20
-    velocidad_boss=6
+    velocidad_boss=4.8
     #carga de imagenes
     scoreboard = funciones_de_carga.cargar_imagen("PYGAME/SCORE_NARANJA.png", (300, 95))
     nave_espacial_image = funciones_de_carga.cargar_imagen("PYGAME/nave.png", (100, 100))

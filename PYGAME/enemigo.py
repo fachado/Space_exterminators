@@ -83,5 +83,9 @@ class Enemigo:
     def mover_linea(enemigos,velocidad):
         for enemigo in enemigos:
             enemigo.rect.y += velocidad
-
+    @staticmethod
+    def perder(enemigos,borde,nave_espacial):
+        for enemigo in enemigos:
+            if enemigo.rect.bottom>borde or enemigo.rect.colliderect(nave_espacial):
+                return True
 
