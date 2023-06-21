@@ -65,8 +65,8 @@ def mostrar_menu_finalizacion(puntuacion):
     clock = pygame.time.Clock()
     font = pygame.font.Font("PYGAME/ARCADECLASSIC.TTF", 36)
     input_box = pygame.Rect(SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 20, 200, 40)
-    color_inactive = pygame.Color('lightskyblue3')
-    color_active = pygame.Color('dodgerblue2')
+    color_inactive = colores.GRIS
+    color_active = colores.CIAN
     color = color_inactive
     active = False
     background_image = pygame.image.load("PYGAME/fondofin.png")
