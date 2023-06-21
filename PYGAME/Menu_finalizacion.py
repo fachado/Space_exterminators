@@ -4,6 +4,7 @@ import random
 import pygame
 import sqlite3
 import personaje
+import colores
 # Constantes
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
@@ -174,23 +175,24 @@ def guardar_puntuacion(nombre, puntuacion):
 
 # Función para mostrar las puntuaciones
 def mostrar_puntuaciones(screen):
-    screen.fill((255, 255, 255))
-    font = pygame.font.Font(None, 36)
-    text_surface = font.render("--- Puntuaciones ---", True, (0, 0, 0))
+    screen.fill((0, 0, 0))
+    font = pygame.font.Font("PYGAME\PublicPixel-z84yD.ttf", 36)
+    text_surface = font.render("--- Puntuaciones ---", True, colores.AMARILLO)
     screen.blit(text_surface, (300, 100))
 
     conexion = sqlite3.connect("puntuaciones.db")
     cursor = conexion.cursor()
     cursor.execute("SELECT nombre, puntuacion FROM puntuaciones ORDER BY puntuacion DESC LIMIT 5")
     puntuaciones = cursor.fetchall()
-
+    
     y = 200
     for i, (nombre, puntuacion) in enumerate(puntuaciones):
-        text_surface = font.render(f"{i+1}. {nombre}: {puntuacion}", True, (0, 0, 0))
+        text_surface = font.render(f"{i+1}. {nombre}: {puntuacion}", True,colores.AMARILLO)
         screen.blit(text_surface, (300, y))
         y += 50
 
     conexion.close()
+
 def mostrar_puntaje(screen, puntaje):
     font = pygame.font.Font("PYGAME/ARCADECLASSIC.TTF", 36)
     text_surface = font.render(f"Highscore {puntaje}", True, (255, 255, 255))
